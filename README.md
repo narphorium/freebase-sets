@@ -4,6 +4,8 @@ At its core, Freebase Sets generated an MQL query which was then used to Query F
 
 The user entered a number of entities to match using the Freebase Suggest autocomplete widget, so the input was a set of disambiguated MIDs instead of just text queries like Google Sets (the tool which inspired Freebase Sets).
 
+![screenshot](freebase_sets.png)
+
 The lookup process started by generating a query to lookup all relevant properties of the first two topics and then diffing the results to find the overlap. This could have been done via the Topic API but I generated some custom MQL read queries so that I could whitelist which predicates to consider and also blacklist some property values (eg. all topics have the type /type/object so that’s not a useful similarity. Also there are a lot /type/object/key values which can be ignored to make things more efficient).
 
 At this point, we don’t yet know which properties are shared by all the topics so the MQL query had to mark each one as optional so that the query could return partially matching results.
